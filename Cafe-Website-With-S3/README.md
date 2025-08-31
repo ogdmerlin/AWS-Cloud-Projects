@@ -214,5 +214,9 @@ According to the [Well-Architected Framework](https://docs.aws.amazon.com/wellar
 
 --------------------------------------------------
 
+https://og-cafe.s3.us-east-1.amazonaws.com/index.html
+
+---------------------------------------------------
+
 **Lab complete**  
 Congratulations! You have completed the lab.
