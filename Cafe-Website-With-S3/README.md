@@ -181,7 +181,7 @@ In this task, you enable cross-Region replication on your source S3 bucket.
 
 <img src="Media/crr_2.png" alt="Enable Versioning on Destination Bucket"/>
 
-
+Choose create bucket.
 
 > [!TIP]
 On the prompt about Replicate existing objects?, choose No...
@@ -193,6 +193,8 @@ Make a minor change to the index.html file, and upload the new version to your s
 Verify that the source `ogd-cafe` bucket now has three versions of the index.html file.
 
 <img src="Media/versioned_changed_task7.png" alt="Versioning Enabled on Destination Bucket"/>
+
+
 
 **Note:**  Confirm that the new object was replicated to your destination `og-cafe-2` bucket. You might need to reload the browser tab.
 
