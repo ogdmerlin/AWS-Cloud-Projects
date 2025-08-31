@@ -131,7 +131,6 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 <img src="Media/rule1_1.png" alt="Lifecycle Rules" />
 
 <img src="Media/rule1_succesfful.png" alt="Lifecycle Rules" />
---
 
 > [!WARNING] 
 *Deletion Rule Below.*
@@ -143,8 +142,9 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 <img src="Media/rule2_1.png" alt="Lifecycle Rules" />
 
 <img src="Media/rule_2-successful.png" alt="Lifecycle Rules" />
+
 > [!TIP]  
-> 💡 If you get stuck, see the [AWS S3 lifecycle configuration examples](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html) in the AWS documentation references.
+If you get stuck, see the [AWS S3 lifecycle configuration examples](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html) in the AWS documentation references.
 
 We should now have a lifecycle configuration that moves previous versions of your source bucket objects to S3 Standard-IA after 30 days. The policy also permanently deletes the objects that are in S3 Standard-IA after 365 days.
 
