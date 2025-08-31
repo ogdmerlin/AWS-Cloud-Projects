@@ -15,7 +15,7 @@ Lab Architecture
 
 <img src="Media/lab_architecture.png" alt="Lab Architecture" />
 
-Task 1: Extracting the files that you need for this lab
+**Task 1: Extracting the files that you need for this lab**
 --------------------------------------------------
 
 1. Download the zip file containing the website files from the link.
@@ -29,7 +29,7 @@ Task 1: Extracting the files that you need for this lab
 
 --------------------------------------------------
 
-Task 2: Creating an S3 bucket to host your static website
+**Task 2: Creating an S3 bucket to host your static website**
 --------------------------------------------------
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at <https://console.aws.amazon.com/s3>
@@ -37,7 +37,8 @@ Task 2: Creating an S3 bucket to host your static website
 
 <img src="Media/create_bucket-1.png" alt="Create Bucket" />
 
-> [!TIP] You must clear Block all public access and enable ACLs to create a public bucket.
+> [!TIP] 
+You must clear Block all public access and enable ACLs to create a public bucket.
 
 <img src="Media/s3-access.png" alt="Create Bucket"/>
 
@@ -51,12 +52,13 @@ Task 3: Uploading content to your S3 bucket
 In this task, you upload the static files to your S3 bucket.
 <img src="Media/upload-s3_files.png" alt="Upload Files" />
 
-Task 4: Creating a bucket policy to grant public read access
+**Task 4: Creating a bucket policy to grant public read access**
 ------------------------------------------------
 
 - Create a bucket policy that grants read-only permission to public anonymous users by using the bucket policy editor.
 
-> [!TIP]: If you get stuck, see the examples in the AWS documentation references <a href="https://docs.aws.amazon.com/AmazonS3/latestuserguideHostingWebsiteOnS3Setuphtml#step4-add-bucket-policy-make-content-public">here</a>
+> [!TIP] 
+If you get stuck, see the examples in the AWS documentation references <a href="https://docs.aws.amazon.com/AmazonS3/latestuserguideHostingWebsiteOnS3Setuphtml#step4-add-bucket-policy-make-content-public">here</a>
 
 Copy the policy below and replace "YOUR-BUCKET-NAME" with the name of your S3 bucket.
 
@@ -76,11 +78,13 @@ The café has a new business requirement to implement a strategy to prevent the 
 
 ------------------------------------------------
 
-### Task 5: Enabling versioning on the S3 bucket
+**Task 5: Enabling versioning on the S3 bucket**
 
 - In the Amazon S3 console, enable versioning on your S3 bucket.
 
-> [!IMPORTANT]: You cannot disable versioning on a bucket after you enable it. You can only suspend it.
+> [!IMPORTANT] 
+You cannot disable versioning on a bucket after you enable it. You can only suspend it.
+
 <img src="Media/versioning.png" alt="Enable Versioning" />
 
 In a text editor, open the index.html file, Modify the file according to the following instructions.
@@ -104,9 +108,11 @@ To see the latest version of the index.html file, go to your bucket and choose S
 
 <img src="Media/color_changed.png" alt="Website Updated" />
 
-> [!TIP]: Notice the change in the color of the second row media of the cafe website.
+> [!TIP] 
+Notice the change in the color of the second row media of the cafe website.
 
-> [!IMPORTANT]: Architecture Best practice: In this task, you used one technique to implement the architecture best practice of protecting your data.
+> [!IMPORTANT] 
+Architecture Best practice: In this task, you used one technique to implement the architecture best practice of protecting your data.
 
 
 According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), versioning can be part of a larger data lifecycle management process. Before you architect any system, foundational practices that influence security should be in place. For example, data classification provides a way to categorize organizational data based on levels of sensitivity. Encryption protects data by rendering it unintelligible to unauthorized access. These tools and techniques are important because they support objectives such as preventing financial loss or complying with regulatory obligations.
@@ -118,7 +124,7 @@ According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/we
 
 Now that you have enabled versioning, you realize that the size of the S3 bucket will continue to grow as you upload new objects and versions. To save costs, you decide to implement a strategy to retire some of those older versions.
 
-**Task 6: Setting lifecycle policies**
+**Task 6: Setting lifecycle policies:**
 
 Configure two rules in the website bucket's lifecycle configuration. To receive full credit, create two separate rules. Do not configure two transitions in a single rule.
 
@@ -143,6 +149,8 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 
 <img src="Media/rule_2-successful.png" alt="Lifecycle Rules" />
 
+<img src="Media/crr_1.png" alt="Lifecycle Rules" />
+
 > [!TIP]  
 If you get stuck, see the [AWS S3 lifecycle configuration examples](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html) in the AWS documentation references.
 
@@ -156,21 +164,49 @@ In this task, you implemented the architecture best practice of defining data li
 According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), in practice, your lifecycle strategy should be based on the criticality and sensitivity of your data, and legal and organizational requirements. You should consider factors such as data retention duration, data destruction, data access management, data transformation, and data sharing.
 
 
+# New business requirement: Enhancing durability and planning for DR (challenge 5)
+
+The café has a new business requirement to enhance the durability of the website data and plan for disaster recovery (DR) by replicating the website data to another AWS Region.
+
+Cross-Region replication is another feature of Amazon S3 that you can also use to back up and archive critical data.
+
+**Task 7: Enabling cross-Region replication:**
+In this task, you enable cross-Region replication on your source S3 bucket.
+
+- In a different Region than the Region for your source bucket, create a second bucket and enable versioning on it. The second bucket is your destination bucket.
+
+<img src="Media/change_region_task7.png" alt="Create Destination Bucket"/>
+
+<img src="Media/bucketrepli.png" alt="Destination Bucket"/>
+
+<img src="Media/crr_2.png" alt="Enable Versioning on Destination Bucket"/>
 
 
 
+> [!TIP]
+On the prompt about Replicate existing objects?, choose No...
+
+If you get stuck, see the [AWS Documentation](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/enable-replication.html#enable-replication-add-rule) for guidance.
+
+Make a minor change to the index.html file, and upload the new version to your source bucket.
+
+Verify that the source `ogd-cafe` bucket now has three versions of the index.html file.
+
+<img src="Media/versioned_changed_task7.png" alt="Versioning Enabled on Destination Bucket"/>
+
+-
+Confirm that the new object was replicated to your destination `og-cafe-2` bucket. You might need to reload the browser tab.
+
+<img src="Media/replicated_destination.png" alt="Upload New Version" />
 
 
+Architecture best practice  
+In this task, you implemented the architecture best practice of automating disaster recovery.
 
+According to the [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), the start of your DR strategy is having backups and redundant workload components in place. You should use AWS or third-party tools to automate system recovery and route traffic to the DR site or Region.
 
-New business requirement: Enhancing durability and planning for DR (challenge 4)
 --------------------------------------------------
 
-Task7: Enabling cross-region replication (CRR)
---------------------------------------------------
-
-In a different Region than the Region for your source bucket, create a second bucket and enable versioning on it. The second bucket is your destination bucket.
-
-1. In the Amazon S3 console, choose the source bucket that you created earlier.
-2. Choose the Management tab.
-3. In the Replication rules section, choose Create replication rule.
+**Lab complete**  
+[!CONGRATS] 
+Congratulations! You have completed the lab.
