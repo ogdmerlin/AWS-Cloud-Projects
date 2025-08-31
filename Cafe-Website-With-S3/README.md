@@ -33,6 +33,9 @@ Lab Architecture
 --------------------------------------------------
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at <https://console.aws.amazon.com/s3>
+
+<img src="Media/s3_dashboard.png" alt="S3 Console" />
+
 2. Choose Create bucket.
 
 <img src="Media/create_bucket-1.png" alt="Create Bucket" />
