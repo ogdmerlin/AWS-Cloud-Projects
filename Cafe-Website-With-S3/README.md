@@ -194,19 +194,18 @@ Verify that the source `ogd-cafe` bucket now has three versions of the index.htm
 
 <img src="Media/versioned_changed_task7.png" alt="Versioning Enabled on Destination Bucket"/>
 
--
+[!TIP]  
 Confirm that the new object was replicated to your destination `og-cafe-2` bucket. You might need to reload the browser tab.
 
 <img src="Media/replicated_destination.png" alt="Upload New Version" />
 
 
-Architecture best practice  
-In this task, you implemented the architecture best practice of automating disaster recovery.
+*Architecture best practice  
+In this task, we implemented the architecture best practice of automating disaster recovery*.
 
-According to the [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), the start of your DR strategy is having backups and redundant workload components in place. You should use AWS or third-party tools to automate system recovery and route traffic to the DR site or Region.
+According to the [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), the start of our DR strategy is having backups and redundant workload components in place.
 
 --------------------------------------------------
 
 **Lab complete**  
-[!CONGRATS] 
 Congratulations! You have completed the lab.
