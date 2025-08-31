@@ -194,8 +194,7 @@ Verify that the source `ogd-cafe` bucket now has three versions of the index.htm
 
 <img src="Media/versioned_changed_task7.png" alt="Versioning Enabled on Destination Bucket"/>
 
-[!TIP]  
-Confirm that the new object was replicated to your destination `og-cafe-2` bucket. You might need to reload the browser tab.
+**Note:**  Confirm that the new object was replicated to your destination `og-cafe-2` bucket. You might need to reload the browser tab.
 
 <img src="Media/replicated_destination.png" alt="Upload New Version" />
 
