@@ -13,7 +13,7 @@ Lab Objectives
 Lab Architecture
 ------------------
 
-<img src="media/lab_architecture.png" alt="Lab Architecture" />
+<img src="Media/lab_architecture.png" alt="Lab Architecture" />
 
 Task 1: Extracting the files that you need for this lab
 --------------------------------------------------
@@ -35,21 +35,21 @@ Task 2: Creating an S3 bucket to host your static website
 1. Sign in to the AWS Management Console and open the Amazon S3 console at <https://console.aws.amazon.com/s3>
 2. Choose Create bucket.
 
-<img src="media/create_bucket-1.png" alt="Create Bucket" />
+<img src="Media/create_bucket-1.png" alt="Create Bucket" />
 
 > [!TIP] You must clear Block all public access and enable ACLs to create a public bucket.
 
-<img src="media/s3-access.png" alt="Create Bucket"/>
+<img src="Media/s3-access.png" alt="Create Bucket"/>
 
 3. Enable static website hosting on your bucket.
 
-<img src="media/enable_static_hosting.png" alt="Static Website Hosting" />
+<img src="Media/enable_static_hosting.png" alt="Static Website Hosting" />
 
 Task 3: Uploading content to your S3 bucket
 --------------------------------------------------
 
 In this task, you upload the static files to your S3 bucket.
-<img src="media/upload-s3_files.png" alt="Upload Files" />
+<img src="Media/upload-s3_files.png" alt="Upload Files" />
 
 Task 4: Creating a bucket policy to grant public read access
 ------------------------------------------------
@@ -60,13 +60,13 @@ Task 4: Creating a bucket policy to grant public read access
 
 Copy the policy below and replace "YOUR-BUCKET-NAME" with the name of your S3 bucket.
 
-<img src="media/image.png" alt="AWS Documentation" />
+<img src="Media/image.png" alt="AWS Documentation" />
 
-<img src="media/Policy_created.png" alt="Bucket Policy" />
+<img src="Media/Policy_created.png" alt="Bucket Policy" />
 
 Congratulations! You now have a static website for the café.
 
-<img src="media/access_yes.png" alt="Website Live" />
+<img src="Media/access_yes.png" alt="Website Live" />
 
 ---------------------------------------------------
 
@@ -81,7 +81,7 @@ The café has a new business requirement to implement a strategy to prevent the 
 - In the Amazon S3 console, enable versioning on your S3 bucket.
 
 > [!IMPORTANT]: You cannot disable versioning on a bucket after you enable it. You can only suspend it.
-<img src="media/versioning.png" alt="Enable Versioning" />
+<img src="Media/versioning.png" alt="Enable Versioning" />
 
 In a text editor, open the index.html file, Modify the file according to the following instructions.
 Locate the first line that has the embedded CSS code `bgcolor="aquamarine"` in the HTML, and change it to `bgcolor="gainsboro"`.
@@ -92,17 +92,17 @@ Locate the second line that has the embedded CSS code `bgcolor="aquamarine"` in 
 
 Save the changes.
 
-<img src="media/edit_html.png" alt="Modify index.html" />
+<img src="Media/edit_html.png" alt="Modify index.html" />
 
 - Upload the updated file to your S3 bucket.
 
 To see the latest version of the index.html file, go to your bucket and choose Show versions. You should see both versions of this file listed.
 
-<img src="media/show_version.png" alt="S3 Versions" />
+<img src="Media/show_version.png" alt="S3 Versions" />
 
 - Reload the web browser tab with your website and notice the changes.
 
-<img src="media/color_changed.png" alt="Website Updated" />
+<img src="Media/color_changed.png" alt="Website Updated" />
 
 > [!TIP]: Notice the change in the color of the second row media of the cafe website.
 
@@ -124,24 +124,24 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 
 - In one rule, move previous versions of all source bucket objects to S3 Standard-IA after 30 days.
 
-<img src="media/lifecycle_rules.png" alt="Lifecycle Rules" />   
+<img src="Media/lifecycle_rules.png" alt="Lifecycle Rules" />   
 
-<img src="media/rule_1.png" alt="Lifecycle Rules" />
+<img src="Media/rule_1.png" alt="Lifecycle Rules" />
 
-<img src="media/rule1_1.png" alt="Lifecycle Rules" />
+<img src="Media/rule1_1.png" alt="Lifecycle Rules" />
 
-<img src="media/rule1_succesfful.png" alt="Lifecycle Rules" />
+<img src="Media/rule1_succesfful.png" alt="Lifecycle Rules" />
 --
 
 > [!WARNING] *Deletion Rule Below.*
 
 - In the other rule, delete previous versions of the objects after 365 days.
 
-<img src="media/rule_2.png" alt="Lifecycle Rules" />    
+<img src="Media/rule_2.png" alt="Lifecycle Rules" />    
 
-<img src="media/rule2_1.png" alt="Lifecycle Rules" />
+<img src="Media/rule2_1.png" alt="Lifecycle Rules" />
 
-<img src="media/rule_2-successful.png" alt="Lifecycle Rules" />
+<img src="Media/rule_2-successful.png" alt="Lifecycle Rules" />
 
 > [!TIP]: If you get stuck, see the examples in the AWS documentation references <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html">here</a>
 
