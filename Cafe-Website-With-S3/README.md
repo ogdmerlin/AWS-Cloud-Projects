@@ -133,7 +133,8 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 <img src="Media/rule1_succesfful.png" alt="Lifecycle Rules" />
 --
 
-> [!WARNING] *Deletion Rule Below.*
+> [!WARNING] 
+*Deletion Rule Below.*
 
 - In the other rule, delete previous versions of the objects after 365 days.
 
@@ -142,8 +143,8 @@ Configure two rules in the website bucket's lifecycle configuration. To receive 
 <img src="Media/rule2_1.png" alt="Lifecycle Rules" />
 
 <img src="Media/rule_2-successful.png" alt="Lifecycle Rules" />
-
-> [!TIP]: If you get stuck, see the examples in the AWS documentation references <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html">here</a>
+> [!TIP]  
+> 💡 If you get stuck, see the [AWS S3 lifecycle configuration examples](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html) in the AWS documentation references.
 
 We should now have a lifecycle configuration that moves previous versions of your source bucket objects to S3 Standard-IA after 30 days. The policy also permanently deletes the objects that are in S3 Standard-IA after 365 days.
 
@@ -151,6 +152,8 @@ We should now have a lifecycle configuration that moves previous versions of you
 
 Architecture best practice
 In this task, you implemented the architecture best practice of defining data lifecycle management.
+
+According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), in practice, your lifecycle strategy should be based on the criticality and sensitivity of your data, and legal and organizational requirements. You should consider factors such as data retention duration, data destruction, data access management, data transformation, and data sharing.
 
 
 
