@@ -188,7 +188,7 @@ On the prompt about Replicate existing objects?, choose No...
 
 If you get stuck, see the [AWS Documentation](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/enable-replication.html#enable-replication-add-rule) for guidance.
 
-Make a minor change to the index.html file, and upload the new version to your source bucket.
+Make a minor change to the index.html file, and upload the new version to your source `ogd-cafe` bucket.
 
 Verify that the source `ogd-cafe` bucket now has three versions of the index.html file.
 
