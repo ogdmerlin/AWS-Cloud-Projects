@@ -86,7 +86,7 @@ The café has a new business requirement to implement a strategy to prevent the 
 - In the Amazon S3 console, enable versioning on your S3 bucket.
 
 > [!IMPORTANT] 
-You cannot disable versioning on a bucket after you enable it. You can only suspend it.
+*You cannot disable versioning on a bucket after you enable it. You can only suspend it.*
 
 <img src="Media/versioning.png" alt="Enable Versioning" />
 
@@ -115,7 +115,7 @@ To see the latest version of the index.html file, go to your bucket and choose S
 Notice the change in the color of the second row media of the cafe website.
 
 > [!IMPORTANT] 
-Architecture Best practice: In this task, you used one technique to implement the architecture best practice of protecting your data.
+*Architecture Best practice: In this task, you used one technique to implement the architecture best practice of protecting your data.*
 
 
 According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), versioning can be part of a larger data lifecycle management process. Before you architect any system, foundational practices that influence security should be in place. For example, data classification provides a way to categorize organizational data based on levels of sensitivity. Encryption protects data by rendering it unintelligible to unauthorized access. These tools and techniques are important because they support objectives such as preventing financial loss or complying with regulatory obligations.
@@ -161,8 +161,8 @@ We should now have a lifecycle configuration that moves previous versions of you
 
 --------------------------------------------------
 
-Architecture best practice
-In this task, you implemented the architecture best practice of defining data lifecycle management.
+*Architecture best practice
+In this task, you implemented the architecture best practice of defining data lifecycle management.*
 
 According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), in practice, your lifecycle strategy should be based on the criticality and sensitivity of your data, and legal and organizational requirements. You should consider factors such as data retention duration, data destruction, data access management, data transformation, and data sharing.
 
