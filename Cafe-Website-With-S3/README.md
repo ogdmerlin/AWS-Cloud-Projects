@@ -75,7 +75,7 @@ Congratulations! You now have a static website for the café.
 
 ---------------------------------------------------
 
-# New business requirement: Enhancing data protection (challenge 3)
+# New business requirement: Enhancing data protection (challenge 2)
 
 The café has a new business requirement to implement a strategy to prevent the accidental overwrite and deletion of website objects.
 
@@ -122,7 +122,7 @@ According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/we
 
 --------------------------------------------------
 
-# New business requirement: Optimizing costs of Amazon S3 object storage (challenge 4)
+# New business requirement: Optimizing costs of Amazon S3 object storage (challenge 3)
 
 
 Now that you have enabled versioning, you realize that the size of the S3 bucket will continue to grow as you upload new objects and versions. To save costs, you decide to implement a strategy to retire some of those older versions.
@@ -167,7 +167,7 @@ In this task, you implemented the architecture best practice of defining data li
 According to the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), in practice, your lifecycle strategy should be based on the criticality and sensitivity of your data, and legal and organizational requirements. You should consider factors such as data retention duration, data destruction, data access management, data transformation, and data sharing.
 
 
-# New business requirement: Enhancing durability and planning for DR (challenge 5)
+# New business requirement: Enhancing durability and planning for DR (challenge 4)
 
 The café has a new business requirement to enhance the durability of the website data and plan for disaster recovery (DR) by replicating the website data to another AWS Region.
 
