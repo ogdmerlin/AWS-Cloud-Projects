@@ -212,11 +212,7 @@ In this task, we implemented the architecture best practice of automating disast
 
 According to the [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html), the start of our DR strategy is having backups and redundant workload components in place.
 
---------------------------------------------------
-
-https://og-cafe.s3.us-east-1.amazonaws.com/index.html
-
 ---------------------------------------------------
 
 **Lab complete**  
-Congratulations! You have completed the lab.
+*Congratulations!* You have completed the lab.
