@@ -1,3 +1,21 @@
+# Introducing Amazon Elastic File System (Amazon EFS)
+Amazon EFS provides a simple, scalable, fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources. It is built to scale on demand to petabytes without disrupting applications, growing and shrinking automatically as you add and remove files, so your applications have the storage they need, when they need it. With Amazon EFS, you can create file systems that can be mounted concurrently by thousands of Amazon EC2 instances, containers, and on-premises servers. This enables your applications to share data between multiple instances and access a common data source for workloads and applications running on more than one instance.
+
+Lab overview and objectives
+===========================
+This lab introduces you to Amazon Elastic File System (Amazon EFS) by using the AWS Management Console.
+
+After completing this lab, you should be able to:
+
+Log in to the AWS Management Console
+
+Create an Amazon EFS file system
+
+Log in to an Amazon Elastic Compute Cloud (Amazon EC2) instance that runs Amazon Linux
+
+Mount your file system to your EC2 instance
+
+Examine and monitor the performance of your file system
 
 Task 1: Creating a security group to access your EFS file system
 ===========================
