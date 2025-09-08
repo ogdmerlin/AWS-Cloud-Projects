@@ -38,6 +38,20 @@ Task 2: Creating an EFS file system
 ===========================
 EFS file systems can be mounted to multiple EC2 instances that run in different Availability Zones in the same Region. These instances use mount targets that are created in each Availability Zone to mount the file system by using standard NFSv4.1 semantics. You can mount the file system on instances in only one virtual private cloud (VPC) at a time. Both the file system and the VPC must be in the same Region.
 
+1. At the top of the AWS Management Console, in the search box, search for and choose EFS. 
+
+- Choose Create file system.
+
+<img src="Media/create_efs.png" alt="EFS Console" />
+
+> [!TIP]  
+In the Create file system window, choose Customize.
+
+<img src="Media/customize_efs.png" alt="Customize EFS" />
+
+
+
+
 
 
 Congratulations! You have created a new EFS file system in your Lab VPC and mount targets in each Lab VPC subnet. In a few seconds, the File system state of the file system will change to Available, followed by the mount targets 2–3 minutes later.
