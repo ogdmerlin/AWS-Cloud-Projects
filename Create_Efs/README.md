@@ -49,12 +49,35 @@ In the Create file system window, choose Customize.
 
 <img src="Media/customize_efs.png" alt="Customize EFS" />
 
+With the below configuration:
+- On Step 1:
 
+- - Uncheck  Enable Automatic backups.
 
+- - - Lifecycle management:
 
+- - for Transition into IA  Select None.
 
+- In the Tags optional section, configure:
 
-Congratulations! You have created a new EFS file system in your Lab VPC and mount targets in each Lab VPC subnet. In a few seconds, the File system state of the file system will change to Available, followed by the mount targets 2–3 minutes later.
+- - Key: Name Value: My First EFS File System
+
+<img src="Media/efs_settings1.png" alt="EFS Tags"/>
+
+<img src="Media/efs_tags.png" alt="EFS Settings"/>
+
+Choose Next.
+- Attach the EFS Mount Target security group to each Availability Zone mount target by choosing EFS Mount Target for each Availability Zone.
+
+<img src="Media/efs_mount_sg.png" alt="EFS Settings"/>
+
+For VPC, select Lab VPC.
+
+Choose Next, Review your configuration and Choose Create.
+
+<img src="Media/efs_created.png" alt="EFS Created"/>
+
+*Congratulations*! You have created a new EFS file system in your Lab VPC and mount targets in each Lab VPC subnet. In a few seconds, the File system state of the file system will change to Available, followed by the mount targets 2–3 minutes later.
 
 
 Task 3: Connecting to your EC2 instance
