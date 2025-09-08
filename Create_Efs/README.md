@@ -151,6 +151,50 @@ Task 5: Examining the performance behavior of your new EFS file system
 Examining the performance by using Flexible IO
  Flexible IO (fio) is a synthetic I/O benchmarking utility for Linux. It is used to benchmark and test Linux I/O subsystems. During boot, fio was automatically installed on your EC2 instance.
 
+Examine the write performance characteristics of your file system by entering:
+
+```bash
+sudo fio --name=fio-efs --filesize=10G --filename=./efs/fio-efs-test.img --bs=1M --nrfiles=1 --direct=1 --sync=0 --rw=write --iodepth=200 --ioengine=libaio
+```
+
+*Note:* The fio command will take few minutes to complete. The output should look like the example in the following screenshot. Make sure that you examine the output of your fio command, specifically the summary status information for this WRITE test.
+<img src="Media/fio.png" alt="FIO Command"/>
 
 Monitoring performance by using Amazon CloudWatch
 ===========================
+
+At the top of the AWS Management Console, in the search box, search for and choose CloudWatch.
+
+- In the navigation pane on the left, choose *All Metrics*.
+
+- - In the *All metrics* tab, choose EFS.
+
+- - - Choose *File System Metrics*.
+
+- - - - Select the row that has the *PermittedThroughput* Metric Name.
+
+<img src="Media/watch_efs.png" alt="CloudWatch EFS Metrics"/>
+
+> [!TIP]  
+ You might need to wait 2–3 minutes and refresh the screen several times before all available metrics, including PermittedThroughput, calculate and populate.
+
+On the graph, If you do not see the line graph, adjust the time range of the graph down to 1h to display the period during which you ran the `fio` command.
+
+In the All metrics tab, uncheck the box for PermittedThroughput.
+
+Select the check box for DataWriteIOBytes.
+ - - If you do not see DataWriteIOBytes in the list of metrics, use the File System Metrics search to find it.
+
+- - Choose the Graphed metrics tab.
+
+<img src="Media/graph.png" alt="CloudWatch EFS Metrics"/>
+
+The throughput that is available to a file system scales as a file system grows. All file systems deliver a consistent baseline performance of 50 MiB/s per TiB of storage. Also, all file systems (regardless of size) can burst to 100 MiB/s. File systems that are larger than 1T B can burst to 100 MiB/s per TiB of storage. As you add data to your file system, the maximum throughput that is available to the file system scales linearly and automatically with your storage.
+
+File system throughput is shared across all EC2 instances that are connected to a file system. For more information about performance characteristics of your EFS file system, see the documentation link in the resources section.
+
+With EFS you can also create access points for application-specific entry points into an EFS file system to provide secured access to shared datasets. Access points can enforce a user identity, including the user's POSIX groups, for all file system requests that are made through the access point. Refer to the section at the bottom for additional information.
+
+
+*Congratulations*! You created an EFS file system, mounted it to an EC2 instance, and ran an I/O benchmark test to examine its performance characteristics.
+You also monitored the performance of your EFS file system by using Amazon CloudWatch.
