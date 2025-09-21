@@ -25,7 +25,7 @@ After completing this lab, you should be able to do the following:
 
 *At the end of this lab, your architecture should look like the following example*:
 
-![Lab Architecture](Media/Lab_Architecture.png)
+![Lab Architecture](Media/lab_architecture.png)
 
 ```markdown
 A business request for the café: Preparing an EC2 instance to host a website (challenge #1)
