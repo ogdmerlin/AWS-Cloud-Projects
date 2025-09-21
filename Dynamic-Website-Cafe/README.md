@@ -195,6 +195,90 @@ Notice that this file has HTML code in it, but it also contains sections that ar
 
 ![index.php File](Media/index_php-parameters.png)
 
+- Open the getAppParameters.php file in the code editor.
+
+Notice on line 3 of this file that the AWSSDK is invoked.
+
+In the subsequent sections, the web application creates a client that connects to Secrets Manager. The application then retrieves seven parameters from Secrets Manager. Those parameters have not been created in Secrets Manager yet, but you do that next.
+
+- To configure the application parameters, in the bash terminal, run the following commands:
+
+```bash
+cd 
+cd environment/setup
+./set-app-parameters.sh
+```
+![Set App Parameters](Media/env_setup1.png)
+
+- After the script runs, it should show that seven parameters were created.
+
+![App Parameters Set](Media/env_setup2.png)
+
+The shell script that we just ran issues AWS Command Line Interface (AWS CLI) commands. These commands add the secrets that the application will use from *Secrets* Manager.
+
+- On the AWS Management Console, in the search box, enter and choose *Secrets* Manager to open the *Secrets* Manager console
+
+- In the left navigation pane, choose ***Secrets***.
+
+There are now seven parameters stored as *secrets*.
+
+> [!NOTE]  
+It might take a few minutes for these parameters to be stored as *secrets*. If you don't see the *secrets*, wait a few minutes, and choose ***Refresh***.
+
+The café application's PHP code references these values (for example, so that it can retrieve the connection information for the MySQL database).
+
+- Choose the /cafe/dbPassword parameter.
+
+- Choose Retrieve secret value, and copy this value to your clipboard. Lab123#
+
+- To configure the MySQL database to support the café application, in the AWS Cloud9 bash terminal, run the following commands:
+
+```bash
+cd ../db/
+./set-root-password.sh
+./create-db.sh
+```
+
+Next, you observe the database tables that were created.
+
+```bash
+mysql -u admin -p
+```
+
+- When you are prompted for the database password, paste the dbPassword parameter value that you copied.
+
+  - You should now see a mysql> prompt, which indicates that you are now connected to the MySQL database that runs on this EC2 instance.
+
+![MySQL Prompt](Media/mariadb.png)
+
+- To observe the contents of the database (specifically, the tables that support the café web application), run the following commands:
+
+```sql
+show databases;
+use cafe_db;
+show tables;
+select * from product;
+exit;
+```
+![Database Tables](Media/db_show.png)
+
+- To update the time zone configuration in PHP, in the bash terminal, run the following commands:
+
+```bash
+sudo sed -i "2i date.timezone = \"America/New_York\" " /etc/php.ini
+sudo service httpd restart
+```
+
+The first command configures the time zone in the PHP software.
+
+The second command restarts the web server so that the web server notices the configuration update.
+
+> [!INFO]  
+To test whether the café website is working and can be accessed from the internet, in a new browser tab, enter `http://<public-ip>/cafe` and replace `<public-ip>` with the public IPv4 address of the EC2 instance.
+> [!NOTE]  
+Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
+You also know that the MySQL database is running and contains tables and data to support the application.
+
 ### Task 5: Testing the web application
 
 In this task, you test placing an order.
