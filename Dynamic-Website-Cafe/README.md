@@ -229,7 +229,7 @@ The café application's PHP code references these values (for example, so that i
 
 - Choose the /cafe/dbPassword parameter.
 
-- Choose Retrieve secret value, and copy this value to your clipboard. Lab123#
+- Choose Retrieve secret value, and copy this value to your clipboard.
 
 - To configure the MySQL database to support the café application, in the AWS Cloud9 bash terminal, run the following commands:
 
@@ -276,11 +276,17 @@ The second command restarts the web server so that the web server notices the co
 > [!IMPORTANT]  
 To test whether the café website is working and can be accessed from the internet, in a new browser tab, enter `http://<public-ip>/cafe` and replace `<public-ip>` with the public IPv4 address of the EC2 instance.
 
+![Cafe Menu](Media/Cafe_webapp.png)
+
 > [!NOTE]  
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
 
-### Task 5: Testing the web application
+
+> [!NOTE]  
+When you think you have fixed the issue, load the `http://<public-ip>/cafe` page again. Does it load completely so that you can see the café menu items? If so, ***congratulations***!
+
+<!-- ### Task 5: Testing the web application
 
 In this task, you test placing an order.
 
@@ -293,7 +299,7 @@ You might need to scroll down to find the Submit Order button.
 
 Return to the menu page and place another order.
 
-Go to the Order History page to see the order details for all the orders that you placed
+Go to the Order History page to see the order details for all the orders that you placed -->
 
 ## New business requirement: Creating development and production websites in different AWS Regions (challenge #3)
 
@@ -315,13 +321,137 @@ Because the café website already runs well on an existing EC2 instance, Sofía 
 
 You continue to take on the role of Sofía for this task. Before you create an AMI out of this instance, you should create a new key pair, which might be important to have later in this lab.
 
-- 
-- 
+- To set a static internal hostname and create a new key pair on the EC2 instance, in the bash terminal, run the following commands, ensure that you are on prompt  `voclabs:~/environment $`, if not , used `cd ..`
+
+```bash
+sudo hostname cafeserver
+ssh-keygen -t rsa -f ~/.ssh/id_rsa
+```
+
+- For the two times that you are prompted for a passphrase, press Enter.
+
+- To make the new key available to the SSH utilities, in the bash terminal, run the following command:
+
+```bash
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+![Key Pair Created](Media/sshkeys.png)
+
+- In the AWS Management Console, browse to the Amazon EC2 console, and then select the instance.
+
+- Choose Actions > Images and templates > Create image.
+
+![Create Image](Media/create_image.png)
+
+Next, you configure the new AMI.
+
+- On the Amazon EC2 console, in the Create Image page, for Image name, enter CafeServer.
+
+- Choose Create Image.
+
+- From the navigation menu, choose AMIs, and wait until the image status becomes Available. The process typically takes about 2 minutes.
+
+![AMI Available](Media/AMI_Available.png)
+
+On the navigation menu, you might need to expand Images to find AMIs.
+
+Create an AMI in another AWS Region.
+
+- In this step, your objective is to create a new EC2 instance from the AMI that you just captured. However, you must create the new instance in the Oregon (us-west-2) AWS Region.
+
+![Select Region](Media/copy_AMI.png)
+
+- In the upper-right corner of the Amazon EC2 console, choose the Region selector, and then choose US West (Oregon).
+
+![Select Oregon](Media/oregon_ami.png)
+
+> [!TIP]  
+Copy the AMI ID of the image that you just created. Then, try to find it in the Oregon (us-west-2) Region.
+Select the AMI you that you created in the AWS Region where you created it. Next, choose the Actions menu. Do any actions seem like they could help you make the AMI available in the Oregon (us-west-2) Region? Choose the appropriate action. After you initiate it, the action might take up to 5 minutes to complete. Choose the refresh icon occasionally to check when it has completed.
+
+Next, you create the new café instance from your AMI.
+
+- To create the new café instance from your AMI, make sure you are in the Oregon Region, and configure the following options:
+  - For Name and tags, choose Add additional tags, and configure the following options
+    - For Key, enter Name.
+
+    - For Value, enter ProdCafeServer.
+
+  - For Instance type, choose t2.small.
+
+  - For Key pair (login), choose Proceed without a key pair. The key pair that you created earlier in this lab should work to connect to it if necessary.
+
+  - For Network settings, choose Edit, and configure the following options:
+    - For VPC, choose the default VPC.
+
+    - For Subnet, choose a public subnet, such as subnet-0bb1c79de3EXAMPLE.
+
+  - For Security Security group name, enter cafeSG, and configure the following options:
+    - Set TCP port 22 so that it is open to anywhere.
+    - Set TCP port 80 so that it is also open to anywhere.
+
+Choose Launch instance.
+
+- Wait for the new instance to have a Public IPv4 DNS value assigned to it even if the status of the instance is still not Available.
+
+Copy the Public IPv4 DNS value. You use it soon.
+
+![Launch Instance](Media/oregon_launched.png)
+
+![Instance Details](Media/Oregon_lunched.png)
+
+Next, you create the needed Secrets Manager secrets in the new AWS Region.
+
+- Return to the ***AWS Cloud9 IDE*** in the N. Virginia (us-east-1) Region, and open the CafeWebServer/setup/set-app-parameters.sh file in the text editor.
+
+- Edit line 15 of the file to match this setting:
+
+```bash
+region="us-west-2"
+```
+
+- Edit line 21 to match this setting (where <public-dns-of-ProdCafeServer-instance> is the DNS of the ProdCafeServer instance):
+
+```bash
+publicDNS="<public-dns-of-ProdCafeServer-instance>"
+```
+
+> [!NOTE]  
+ Note: The line should still contain the quotation marks, but it should not contain the brackets (< >).
+This example shows what line 15 should look like and how line 21 should be formatted. However, the value of your public DNS will be different.
+
+![Edit Script](Media/run_pdn.png)
+
+> [!TIP]  
+By changing the AWS Region details and running this script again, you create the same parameters that you created earlier in the us-east-1 Region of Secrets Manager. However, this time, you created these parameters in the Oregon Region.
+
 
 ### Task 7: Verifying the new café instance  
 
-- 
-- 
+- Return to the EC2 Console in the Oregon Region, and verify that the new ProdCafeServer instance is running.
+
+![ProdCafeServer Running](Media/prodcafe.png)
+
+- Copy the Public IPv4 address, and load it in a web browser.
+
+  - The Hello from the cafe web server! message should display.
+
+- Load the http://<public-ip>/cafe/ URL in a browser tab.
+
+  - The entire café website should display.
+
+![New Instance](Media/New_instance.png)
+
+- Load the Menu page.
+
+  - The full Menu page should load, and the order-placing functionality should work
+
+![Menu Page](Media/order_menu.png)
+
+- Place an order to verify that the website is working as intended.
+
+![Place Order](Media/Order_confirmed.png)
 
 ## Update from the café
 
