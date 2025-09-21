@@ -108,7 +108,7 @@ Confirm that the output shows that both services are running.
 
 ![Database Running](Media/mariadb_status.png)
 
-> [!NOTE]  
+> [!WARNING]  
 After running these commands, if the terminal doesn't show a prompt, press *Q*
 
 - To configure the EC2 instance so that you can use the AWS Cloud9 editor to edit web server files, run the following commands:
@@ -134,7 +134,7 @@ Next, you create a test webpage.
 <html>Hello from the café web server!</html>
 ```
 
-> [!NOTE]  
+> [!TIP]  
 Make the website accessible from the internet.
 In the Amazon EC2 console, locate the public IPv4 address of the EC2 instance. In a new browser tab, enter `http://<public-ip>` and replace ** with the public IPv4 address, and open the page. Does the message that you entered into index.html file load in the browser?
 *To allow inbound HTTP traffic on TCP port 80 from anywhere, update the Source in the security group of the EC2 instance as needed*.
@@ -282,8 +282,7 @@ To test whether the café website is working and can be accessed from the intern
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
 
-
-> [!NOTE]  
+> [!ERROR]  
 When you think you have fixed the issue, load the `http://<public-ip>/cafe` page again. Does it load completely so that you can see the café menu items? If so, ***congratulations***!
 
 ### Task 5: Testing the web application
@@ -425,7 +424,6 @@ This example shows what line 15 should look like and how line 21 should be forma
 
 > [!TIP]  
 By changing the AWS Region details and running this script again, you create the same parameters that you created earlier in the us-east-1 Region of Secrets Manager. However, this time, you created these parameters in the Oregon Region.
-
 
 ### Task 7: Verifying the new café instance  
 
