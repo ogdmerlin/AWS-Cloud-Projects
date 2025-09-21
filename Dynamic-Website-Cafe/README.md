@@ -286,7 +286,7 @@ You also know that the MySQL database is running and contains tables and data to
 > [!NOTE]  
 When you think you have fixed the issue, load the `http://<public-ip>/cafe` page again. Does it load completely so that you can see the café menu items? If so, ***congratulations***!
 
-<!-- ### Task 5: Testing the web application
+### Task 5: Testing the web application
 
 In this task, you test placing an order.
 
@@ -299,7 +299,7 @@ You might need to scroll down to find the Submit Order button.
 
 Return to the menu page and place another order.
 
-Go to the Order History page to see the order details for all the orders that you placed -->
+Go to the Order History page to see the order details for all the orders that you placed
 
 ## New business requirement: Creating development and production websites in different AWS Regions (challenge #3)
 
@@ -437,7 +437,7 @@ By changing the AWS Region details and running this script again, you create the
 
   - The Hello from the cafe web server! message should display.
 
-- Load the http://<public-ip>/cafe/ URL in a browser tab.
+- Load the `http://<public-ip>/cafe/` URL in a browser tab.
 
   - The entire café website should display.
 
