@@ -273,8 +273,9 @@ The first command configures the time zone in the PHP software.
 
 The second command restarts the web server so that the web server notices the configuration update.
 
-> [!INFO]  
+> [!IMPORTANT]  
 To test whether the café website is working and can be accessed from the internet, in a new browser tab, enter `http://<public-ip>/cafe` and replace `<public-ip>` with the public IPv4 address of the EC2 instance.
+
 > [!NOTE]  
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
