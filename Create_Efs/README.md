@@ -129,7 +129,7 @@ sudo su -l ec2-user
 
 - The amazon-efs-utils package includes the mount helper that simplifies the process of mounting EFS file systems and provides additional features, such as encryption of data in transit.
 
-2. Run the following command to install the amazon-efs-utils package:
+1. Run the following command to install the amazon-efs-utils package:
 
 ```bash
 sudo yum install -y amazon-efs-utils
@@ -138,7 +138,7 @@ sudo yum install -y amazon-efs-utils
 > [!TIP]  
 To paste into the terminal in the browser, place your cursor just to the right of the command prompt and right-click to see the paste option.
 
-<img src="Media/utils_installed.png" alt="Paste Command"/>
+![Paste Command](Media/utils_installed.png)
 
 Run the following command to create directory for mount:
 
@@ -146,7 +146,7 @@ Run the following command to create directory for mount:
 sudo mkdir efs.
 ```
 
-<img src="Media/mkdir_efs.png" alt="Create Directory"/>
+![Create Directory](Media/mkdir_efs.png)
 
 At the top of the AWS Management Console, in the search box, search for and choose EFS.
 Choose My First EFS File System.
@@ -154,8 +154,8 @@ Choose My First EFS File System.
 - In the Amazon EFS Console, on the top right corner of the page.
 - - choose Attach to open the Amazon EC2 mount instructions.
 
-<img src="Media/attach_options.png" alt="EFS Mount Instructions"/>
-<img src="Media/mount_commands.png" alt="EFS Mount Instructions"/>
+![EFS Mount Instructions](Media/attach_options.png)
+![EFS Mount Instructions](Media/mount_commands.png)
 
 Get a full summary of the available and used disk space usage by entering:
 
@@ -164,14 +164,13 @@ sudo df -hT
 ```
 
 This following screenshot is the output from the following disk filesystem command:
-<img src="Media/dh.png" alt="Disk Filesystem Command"/>
+![Disk Filesystem Command](Media/dh.png)
 
 > [!TIP]  
 Notice the Type and Size of your mounted EFS file system, similar to the following.
 `fs-0e2e45d50de5916b3.efs.us-east-1.amazonaws.com:/ nfs4      8.0E     0  8.0E   0% /home/ec2-user/efs`
 
-Task 5: Examining the performance behavior of your new EFS file system
-===========================
+### Task 5: Examining the performance behavior of your new EFS file system
 
 Examining the performance by using Flexible IO
  Flexible IO (fio) is a synthetic I/O benchmarking utility for Linux. It is used to benchmark and test Linux I/O subsystems. During boot, fio was automatically installed on your EC2 instance.
@@ -183,10 +182,9 @@ sudo fio --name=fio-efs --filesize=10G --filename=./efs/fio-efs-test.img --bs=1M
 ```
 
 *Note:* The fio command will take few minutes to complete. The output should look like the example in the following screenshot. Make sure that you examine the output of your fio command, specifically the summary status information for this WRITE test.
-<img src="Media/fio.png" alt="FIO Command"/>
+![FIO Command](Media/fio.png)
 
-Monitoring performance by using Amazon CloudWatch
-===========================
+### Monitoring performance by using Amazon CloudWatch
 
 At the top of the AWS Management Console, in the search box, search for and choose CloudWatch.
 
@@ -198,7 +196,7 @@ At the top of the AWS Management Console, in the search box, search for and choo
 
 - - - - Select the row that has the *PermittedThroughput* Metric Name.
 
-<img src="Media/watch_efs.png" alt="CloudWatch EFS Metrics"/>
+![CloudWatch EFS Metrics](Media/watch_efs.png)
 
 > [!TIP]  
  You might need to wait 2–3 minutes and refresh the screen several times before all available metrics, including PermittedThroughput, calculate and populate.
@@ -213,7 +211,7 @@ Select the check box for DataWriteIOBytes.
 
 - - Choose the Graphed metrics tab.
 
-<img src="Media/graph.png" alt="CloudWatch EFS Metrics"/>
+![CloudWatch EFS Metrics](Media/graph.png)
 
 The throughput that is available to a file system scales as a file system grows. All file systems deliver a consistent baseline performance of 50 MiB/s per TiB of storage. Also, all file systems (regardless of size) can burst to 100 MiB/s. File systems that are larger than 1T B can burst to 100 MiB/s per TiB of storage. As you add data to your file system, the maximum throughput that is available to the file system scales linearly and automatically with your storage.
 
@@ -223,3 +221,17 @@ With EFS you can also create access points for application-specific entry points
 
 *Congratulations*! You created an EFS file system, mounted it to an EC2 instance, and ran an I/O benchmark test to examine its performance characteristics.
 You also monitored the performance of your EFS file system by using Amazon CloudWatch.
+
+## Additional information and resources
+
+For more information about Amazon EFS, see the following resources:
+
+- Amazon EFS product page: <https://aws.amazon.com/efs/>
+- Amazon EFS documentation: <https://docs.aws.amazon.com/efs/>
+- Amazon EFS pricing: <https://aws.amazon.com/efs/pricing/>
+- Amazon EFS FAQs: <https://aws.amazon.com/efs/faqs/>
+- Amazon EFS blog: <https://aws.amazon.com/blogs/storage/category/storage/amazon-elastic-file-system/>
+
+## Lab cleanup
+
+To avoid ongoing charges to your AWS account, delete the resources that you created in this lab.
