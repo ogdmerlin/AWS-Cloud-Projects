@@ -1,8 +1,9 @@
 # Introducing Amazon Elastic File System (Amazon EFS)
+
 Amazon EFS provides a simple, scalable, fully managed elastic NFS file system for use with AWS Cloud services and on-premises resources. It is built to scale on demand to petabytes without disrupting applications, growing and shrinking automatically as you add and remove files, so your applications have the storage they need, when they need it. With Amazon EFS, you can create file systems that can be mounted concurrently by thousands of Amazon EC2 instances, containers, and on-premises servers. This enables your applications to share data between multiple instances and access a common data source for workloads and applications running on more than one instance.
 
-Lab overview and objectives
-===========================
+## Lab overview and objectives
+
 This lab introduces you to Amazon Elastic File System (Amazon EFS) by using the AWS Management Console.
 
 After completing this lab, you should be able to:
@@ -17,57 +18,60 @@ Mount your file system to your EC2 instance
 
 Examine and monitor the performance of your file system
 
-Task 1: Creating a security group to access your EFS file system
-===========================
+## Task 1: Creating a security group to access your EFS file system
+
 The security group that you associate with a mount target must allow inbound access for TCP on port 2049 for Network File System (NFS). This is the security group that you will now create, configure, and attach to your EFS mount targets.
 
 1. At the top of the AWS Management Console, in the search box, search for and choose EC2.
 
-<img src="Media/Console_Dashboard.png" alt="Dashboard"/>
+![Dashboard](Media/Console_Dashboard.png)
 
-2. In the navigation pane, under Network & Security, choose Security Groups.
+1. In the navigation pane, under Network & Security, choose Security Groups.
 
-3. Choose *Create* security group.
+2. Choose *Create* security group.
 
 For Security group name and description, enter **EFSClient**, and cchoose the below configuration:
 
-<img src="Media/create_sg.png" alt="Create Security Group"/>
+![Create Security Group](Media/create_sg.png)
 
-4. Scroll down, Click *Create* and Copy the Security group ID of the EFSClient security group to your text editor.
+Scroll down, Click *Create* and Copy the Security group ID of the EFSClient security group to your text editor.
 
 > [!IMPORTANT]  
- The Group ID should look similar to sg-03727965651b6659b. 
+ The Group ID should look similar to sg-03727965651b6659b.
 
-5. Let's *Create* another Security group for the **Mount Target** Choose *Create* security group then configure:
+1. Let's *Create* another Security group for the **Mount Target** Choose *Create* security group then configure:
 
 - In the Custom box, paste the security group's Security group ID that you copied to your text editor, as seen below:
 
-<img src="Media/mount_sg.png" alt="Create Security Group"/>
+![Create Security Group](Media/mount_sg.png)
 
 Under the Inbound rules section, choose Add rule then configure:
 
 - Type: NFS
 
 - Source: Custom
-<img src="Media/mount_sg_success.png" alt="Create Security Group"/>
+
+![Create Security Group](Media/mount_sg_success.png)
+
 Choose *Create* security group.
 
-Task 2: Creating an EFS file system
-===========================
+## Task 2: Creating an EFS file system
+
 EFS file systems can be mounted to multiple EC2 instances that run in different Availability Zones in the same Region. These instances use mount targets that are created in each Availability Zone to mount the file system by using standard NFSv4.1 semantics. You can mount the file system on instances in only one virtual private cloud (VPC) at a time. Both the file system and the VPC must be in the same Region.
 
-1. At the top of the AWS Management Console, in the search box, search for and choose EFS. 
+1. At the top of the AWS Management Console, in the search box, search for and choose EFS.
 
 - Choose *Create* file system.
 
-<img src="Media/create_efs.png" alt="EFS Console" />
+![EFS Console](Media/create_efs.png)
 
 > [!TIP]  
 In the Create file system window, choose Customize.
 
-<img src="Media/customize_efs.png" alt="Customize EFS" />
+![Customize EFS](Media/customize_efs.png)
 
 With the below configuration:
+
 - On Step 1:
 
 - - Uncheck  *Enable Automatic backups*.
@@ -80,42 +84,41 @@ With the below configuration:
 
 - - Key: *Name* Value: *My First EFS File System*
 
-<img src="Media/efs_settings1.png" alt="EFS Tags"/>
+![EFS Tags](Media/efs_settings1.png)
 
-<img src="Media/efs_tags.png" alt="EFS Settings"/>
+![EFS Settings](Media/efs_tags.png)
 
 Choose Next.
+
 - Attach the EFS Mount Target security group to each Availability Zone mount target by choosing EFS Mount Target for each Availability Zone.
 
-<img src="Media/efs_mount_sg.png" alt="EFS Settings"/>
+![EFS Settings](Media/efs_mount_sg.png)
 
 For VPC, select Lab VPC.
 
 Choose *Next*, Review your configuration and Choose *Create*.
 
-<img src="Media/efs_created.png" alt="EFS Created"/>
+![EFS Created](Media/efs_created.png)
 
 *Congratulations*! You have created a new EFS file system in your Lab VPC and mount targets in each Lab VPC subnet. In a few seconds, the File system state of the file system will change to Available, followed by the mount targets 2–3 minutes later.
 
-
-Task 3: Connecting to your EC2 instance
-===========================
+### Task 3: Connecting to your EC2 instance
 
 In this task, you will connect to your EC2 instance by using AWS Systems Manager Session Manager sign-in URL.
 
 To connect to the EC2 instance: Go to instances in the EC2 console, select the instance, and then choose Connect.
 
-<img src="Media/efs_running.png" alt="Connect to Instance"/>
+![Connect to Instance](Media/efs_running.png)
 
 Choose the *Session Manager* tab, and then choose *Connect*.
-<img src="Media/ec2_connect_sm.png" alt="Connect to Instance"/>
+![Connect to Instance](Media/ec2_connect_sm.png)
 
 You should now be connected to the instance.
 
-<img src="Media/instance_connected.png" alt="Connected to Instance"/>
+![Connected to Instance](Media/instance_connected.png)
 
-Task 4: Creating a new directory and mounting the EFS file system
-===========================
+### Task 4: Creating a new directory and mounting the EFS file system
+
 Amazon EFS supports the NFSv4.1 and NFSv4.0 protocols when it mounts your file systems on EC2 instances. Though NFSv4.0 is supported, we recommend that you use NFSv4.1. When you mount your EFS file system on your EC2 instance, you must also use an NFS client that supports your chosen NFSv4 protocol. The EC2 instance that was launched as a part of this lab includes an NFSv4.1 client, which is already installed on it.
 
 1. In the Session Manager terminal window, run the following command to switch to the ec2-user account:
@@ -142,12 +145,14 @@ Run the following command to create directory for mount:
 ```bash
 sudo mkdir efs.
 ```
+
 <img src="Media/mkdir_efs.png" alt="Create Directory"/>
 
 At the top of the AWS Management Console, in the search box, search for and choose EFS.
 Choose My First EFS File System.
+
 - In the Amazon EFS Console, on the top right corner of the page.
-- -  choose Attach to open the Amazon EC2 mount instructions.
+- - choose Attach to open the Amazon EC2 mount instructions.
 
 <img src="Media/attach_options.png" alt="EFS Mount Instructions"/>
 <img src="Media/mount_commands.png" alt="EFS Mount Instructions"/>
@@ -157,6 +162,7 @@ Get a full summary of the available and used disk space usage by entering:
 ```bash
 sudo df -hT
 ```
+
 This following screenshot is the output from the following disk filesystem command:
 <img src="Media/dh.png" alt="Disk Filesystem Command"/>
 
@@ -166,6 +172,7 @@ Notice the Type and Size of your mounted EFS file system, similar to the followi
 
 Task 5: Examining the performance behavior of your new EFS file system
 ===========================
+
 Examining the performance by using Flexible IO
  Flexible IO (fio) is a synthetic I/O benchmarking utility for Linux. It is used to benchmark and test Linux I/O subsystems. During boot, fio was automatically installed on your EC2 instance.
 
@@ -201,7 +208,8 @@ On the graph, If you do not see the line graph, adjust the time range of the gra
 In the All metrics tab, uncheck the box for PermittedThroughput.
 
 Select the check box for DataWriteIOBytes.
- - - If you do not see DataWriteIOBytes in the list of metrics, use the File System Metrics search to find it.
+
+- - If you do not see DataWriteIOBytes in the list of metrics, use the File System Metrics search to find it.
 
 - - Choose the Graphed metrics tab.
 
@@ -212,7 +220,6 @@ The throughput that is available to a file system scales as a file system grows.
 File system throughput is shared across all EC2 instances that are connected to a file system. For more information about performance characteristics of your EFS file system, see the documentation link in the resources section.
 
 With EFS you can also create access points for application-specific entry points into an EFS file system to provide secured access to shared datasets. Access points can enforce a user identity, including the user's POSIX groups, for all file system requests that are made through the access point. Refer to the section at the bottom for additional information.
-
 
 *Congratulations*! You created an EFS file system, mounted it to an EC2 instance, and ran an I/O benchmark test to examine its performance characteristics.
 You also monitored the performance of your EFS file system by using Amazon CloudWatch.
