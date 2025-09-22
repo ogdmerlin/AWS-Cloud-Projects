@@ -280,9 +280,12 @@ To test whether the café website is working and can be accessed from the intern
 
 ![Cafe Menu](Media/Cafe_webapp.png)
 
-> [!NOTE]  
+> [!CAUTION]  
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
+
+- `http://<public-ip>/cafe`
+
 > [!CAUTION]  
 When you think you have fixed the issue, load the `http://<public-ip>/cafe` page again. Does it load completely so that you can see the café menu items? If so, ***congratulations***!
 
