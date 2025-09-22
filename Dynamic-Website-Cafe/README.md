@@ -208,6 +208,7 @@ cd
 cd environment/setup
 ./set-app-parameters.sh
 ```
+
 ![Set App Parameters](Media/env_setup1.png)
 
 - After the script runs, it should show that seven parameters were created.
@@ -260,6 +261,7 @@ show tables;
 select * from product;
 exit;
 ```
+
 ![Database Tables](Media/db_show.png)
 
 - To update the time zone configuration in PHP, in the bash terminal, run the following commands:
@@ -281,8 +283,7 @@ To test whether the café website is working and can be accessed from the intern
 > [!NOTE]  
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
-
-> [!ERROR]  
+> [!CAUTION]  
 When you think you have fixed the issue, load the `http://<public-ip>/cafe` page again. Does it load completely so that you can see the café menu items? If so, ***congratulations***!
 
 ### Task 5: Testing the web application
@@ -410,10 +411,10 @@ Next, you create the needed Secrets Manager secrets in the new AWS Region.
 region="us-west-2"
 ```
 
-- Edit line 21 to match this setting (where <public-dns-of-ProdCafeServer-instance> is the DNS of the ProdCafeServer instance):
+- Edit line 21 to match this setting (where `<public-dns-of-ProdCafeServer-instance>` is the DNS of the ProdCafeServer instance):
 
 ```bash
-publicDNS="<public-dns-of-ProdCafeServer-instance>"
+publicDNS="`<public-dns-of-ProdCafeServer-instance>`"
 ```
 
 > [!NOTE]  
