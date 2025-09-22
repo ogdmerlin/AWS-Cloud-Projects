@@ -280,7 +280,7 @@ To test whether the café website is working and can be accessed from the intern
 
 ![Cafe Menu](Media/Cafe_webapp.png)
 
-> [!CAUTION]  
+> [!IMPORTANT]  
 Make sure the test page at `http://<public-ip>/` loads, so you know that the web server works and is accessible from the internet.
 You also know that the MySQL database is running and contains tables and data to support the application.
 
