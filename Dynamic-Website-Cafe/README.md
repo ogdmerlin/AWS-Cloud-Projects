@@ -1,4 +1,4 @@
-# Challenge Lab: Creating a Dynamic Website for the Café
+# Lab: Creating a Dynamic Website for the Café
 
 ![Lab Description](Media/Lab_start.png)
 
