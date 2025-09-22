@@ -1,4 +1,4 @@
-Challenge Lab: Creating a Static Website for the Café
+Lab: Creating a Static Website for the Café
 ===================================================================
 
 In this lab, you will create a static website for a café using Amazon S3.
